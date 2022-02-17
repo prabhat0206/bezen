@@ -33,7 +33,7 @@ class Record(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='uploads/')
+    image = models.ImageField(upload_to='')
     species = models.CharField(max_length=255)
     weight = models.CharField(max_length=50)
     length = models.CharField(max_length=50)
