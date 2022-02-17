@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from django.conf import settings
+from django.views.static import serve
 from django.conf.urls.static import static
 
 # Serializers define the API representation.
@@ -23,5 +24,6 @@ router.register(r'users', UserViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rest/', include('bezen.urls')),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT})
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
